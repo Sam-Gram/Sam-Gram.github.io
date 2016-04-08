@@ -1,0 +1,48 @@
+*
+{
+    box-sizing: border-box;
+}
+
+.home-menu
+{
+    background: cornflowerblue;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.home-menu-main-item
+{
+    font: 1.5em arial, sans-serif;
+    color: white;
+    padding-left: 15px;
+    text-shadow: 1px 1px #949494;
+}
+
+.home-menu-sub-item
+{
+    font: 1.2em arial, san-serif;
+}
+
+.dropdown
+{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-list
+{
+    display:none;
+    position: absolute;
+    box-shadow: 3px 3px 2px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-list
+{
+    display: block;
+}
+                    
+                    
