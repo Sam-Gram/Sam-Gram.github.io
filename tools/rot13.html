@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style media="screen">
+    * {
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+    #app > input {
+      width: 400px;
+    }
+  </style>
+  <script type="text/javascript" src="../libs/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input v-on:keyup="handleOnChange()" v-model="message">
+    <p>{{ result }}</p>
+  </div>
+  <script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      message: '',
+      result: ''
+    },
+    methods: {
+      handleOnChange: function () {
+        this.result = this.message.split('')
+        this.result.forEach(function (letter, index, array) {
+          var charCode = letter.charCodeAt(0)
+          var upperCase = false
+          if (charCode > 64 && charCode < 91) {
+            charCode -= 65
+            upperCase = true
+          }
+          else if (charCode > 96 && charCode < 123) {
+            charCode -= 97
+          } else {
+            return;
+          }
+          charCode = (charCode + 13) % 26
+          array[index] = String.fromCharCode(upperCase ? charCode + 65 : charCode + 97)
+        })
+        this.result = this.result.join('')
+      }
+    }
+  })
+  </script>
+</body>
+</html>
