@@ -29,6 +29,9 @@
     </ul>
   </div>
   <script type='text/javascript'>
+	/* http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array/38548346
+	 * This is the Durstenfeld shuffle with O(n) complexity (better than Fisher-Yates (O(n^2))),
+	 * special thanks to SO user Laurens Holst for pointing this out.*/
   function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
