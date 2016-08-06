@@ -22,7 +22,7 @@
   <div>
     <ul id="app">
 			<input type="number" class="" @change="handlePancakeNumberChange" style="margin-bottom:5px" min="1" max="99">
-			<div style="position:absolute; transform: translate(50%, 25%)">
+			<div style="position:absolute; transform: translate(25%, -175%)">
 				<span>Number Of Flips:</span> {{numFlips}}
 			</div>
       <div v-for='pancake in pancakes' v-on:click="handleClick($index, $event)" class="pancake" style="width:{{pancake.number}}px;">&nbsp;</div>
