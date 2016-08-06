@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			font-family: sans-serif;
+    }
+    .pancake {
+      background: brown;
+      background: linear-gradient(brown, peru);
+      border-radius: 12px;
+      margin-bottom: 1px;
+    }
+  </style>
+  <script type='text/javascript' src='../libs/vue.min.js'></script>
+</head>
+<body>
+  <h1>Pancake Flipper Simulator</h1>
+  <div>
+    <ul id="app">
+			<input type="number" class="" @change="handlePancakeNumberChange" style="margin-bottom:5px" min="1" max="99">
+			<div style="position:absolute; transform: translate(50%, 25%)">
+				<span>Number Of Flips:</span> {{numFlips}}
+			</div>
+      <div v-for='pancake in pancakes' v-on:click="handleClick($index, $event)" class="pancake" style="width:{{pancake.number}}px;">&nbsp;</div>
+    </ul>
+  </div>
+  <script type='text/javascript'>
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+  }
+	function genPancakes (num) {
+  	var pancakes = []
+  	for (var i = 0; i < num; i++) {
+    	pancakes[i] = {
+      	number: (i+5)*10
+    	}
+  	}
+
+  	pancakes = shuffleArray(pancakes)
+		return pancakes
+	}
+
+  new Vue({
+    el: '#app',
+    data: {
+      pancakes: genPancakes(Math.floor( Math.random() * 15 ) + 5),
+			numFlips: 0
+    },
+		computed : {
+			numPancakes: function () {
+				this.pancakes.length
+			}
+		},
+    methods: {
+      handleClick: function (index, event) {
+				this.numFlips++
+				var pancakes = this.pancakes.slice(0,index+1)
+				this.pancakes.splice(0, index+1, ...pancakes.reverse())
+      },
+			handlePancakeNumberChange: function (e) {
+				this.numFlips = 0
+				this.pancakes = genPancakes(e.target.value)
+			}
+
+    }
+  })
+
+  </script>
+</body>
+</html>
