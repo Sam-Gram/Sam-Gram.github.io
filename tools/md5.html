@@ -10,7 +10,7 @@
        function handleOnChange() {
           theOutput.innerText = md5(theInput.value);
        }
-       theInput.onchange = handleOnChange
+       theInput.onkeyup = handleOnChange
        theButton.onclick = handleOnChange
        theOutput.onfocus = function () {
           var selection = window.getSelection()
